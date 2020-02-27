@@ -13,5 +13,5 @@
 
 ## 功能
 
-![](./weibo.png)
+![](./Weibo.png)
 
