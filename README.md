@@ -4,7 +4,7 @@
 
 [阿里云部署地址](http://wb.7emini.club/)
 
-## 项目技术栈
+## 技术栈
 
 * 后端：`Laravel 6.12.0`
 * 前端使用 `Bootstrap4`
