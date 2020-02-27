@@ -27,12 +27,12 @@
 
 ## 第四章：优化页面
 
-* Bootstrap 框架
-* Laravel 前端工作流
-* 使用  Laravel-mix 解决浏览器缓存问题
-* 使用 sass
+* `Bootstrap` 框架
+* `Laravel` 前端工作流
+* 使用 `Laravel-mix` 解决浏览器缓存问题
+* 使用 `sass`
 * 局部视图的定义与引用
-* Blade 模版中使用路由名称
+* `Blade` 模版中使用路由名称
 
 
 ## 第五章：用户模型
