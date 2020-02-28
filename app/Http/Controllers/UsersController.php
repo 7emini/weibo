@@ -23,7 +23,17 @@ class UsersController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:users|max:50',
             'email'=> 'required|email|unique:users|max:255',
-            'passowrd'=> 'required|confirmed|mix:6'
+            'password'=> 'required|confirmed|max:6'
         ]);
+        
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
+
+        session()->flash('success', '恭喜，注册成功');
+
+        return redirect()->route('users.show', $user);
     }
 }
