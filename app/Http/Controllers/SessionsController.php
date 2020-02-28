@@ -19,8 +19,6 @@ class SessionsController extends Controller
             'email' => 'required|email|max:255',
             'password'=> 'required|min:6'
         ]);
-        dump($credentials);
-
         if (Auth::attempt($credentials)) {
             session()->flash('success', '登录成功');
             return redirect()->route('users.show', [Auth::user()]);
@@ -29,5 +27,9 @@ class SessionsController extends Controller
             return redirect()->back()->withInput();
         }
         return;
+    }
+
+    public function destroy() {
+        
     }
 }
