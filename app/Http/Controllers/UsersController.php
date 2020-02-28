@@ -24,13 +24,13 @@ class UsersController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:users|max:50',
             'email'=> 'required|email|unique:users|max:255',
-            'password'=> 'required|confirmed|max:6'
+            'password'=> 'required|confirmed|min:6|max:20'
         ]);
         
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password
+            'password' => bcrypt($request->password)
         ]);
 
         Auth::login($user); 
@@ -54,7 +54,7 @@ class UsersController extends Controller
         $data['name'] = $request->input('name');
         
         if ($request->password) {
-            $data['password'] = $request->password;
+            $data['password'] = bcrypt($request->password);
         }
 
         $user->update($data);
