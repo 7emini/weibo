@@ -25,6 +25,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        //自动注册授权策略
+        //TODO:权限系统 https://learnku.com/courses/laravel-essential-training/6.x/permissions-system/5484
+        Gate::guessPolicyNamesUsing(function ($modelClass) {
+            return 'App\Policies\\'.class_basename($modelClass).'Policy';
+        });
     }
 }

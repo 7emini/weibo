@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\Auth;
 
 class SessionsController extends Controller
 {
+
+    public function __construct()
+    {
+        // 指定未登录的用户操作
+        $this->middleware('guest', [
+            //未登录用户只能访问登录页面
+            'only' => ['create']
+        ]);
+    }
+
     public function create()
     {
         return view('sessions.create');
@@ -23,9 +33,12 @@ class SessionsController extends Controller
         // die();
         if (Auth::attempt($credentials, $request->has('remember'))) {
             session()->flash('success', '登录成功');
-            return redirect()->route('users.show', [Auth::user()]);
+            $fallback = route('users.show', [Auth::user()]);
+            // 将用户重定向到之前访问的页面
+            return redirect()->intended($fallback);
         } else {
             session()->flash('danger', '账号或密码不正确');
+            // 携带参数返回上级页面
             return redirect()->back()->withInput();
         }
         return;
