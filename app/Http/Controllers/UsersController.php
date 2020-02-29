@@ -12,8 +12,10 @@ class UsersController extends Controller
 
     public function __construct()
     {
+        // 需要用户登录的操作
         $this->middleware('auth', [
-            'except' => ['show', 'create', 'store']
+            //除去
+            'except' => ['show', 'create', 'store', 'index']
         ]);
     }
 
@@ -72,5 +74,11 @@ class UsersController extends Controller
         session()->flash('success', '更新个人资料成功');
 
         return redirect()->route('users.show', $user->id);
+    }
+
+    public function index()
+    {
+        $users = User::paginate(10);
+        return view('users.index', compact('users'));
     }
 }
