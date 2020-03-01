@@ -58,9 +58,21 @@ class UsersController extends Controller
         $name = 'GaoHe';
         $to = $user->email;
         $subject = '感谢注册Weibo应用';
+        
         Mail::send($view, $data, function($message) use ($from, $name, $to, $subject){
             $message->from($from, $name)->to($to)->subject($subject);
         });
+
+        // TODO:配置在生产环境中发送邮件
+        // $view = 'emails.confirm';
+        // $data = compact('user');
+        // $to = $user->email;
+        // $subject = "感谢注册 Weibo 应用！请确认你的邮箱。";
+
+        // Mail::send($view, $data, function ($message) use ($to, $subject) {
+        //     $message->to($to)->subject($subject);
+        // });
+
     }
 
     public function edit(User $user)
