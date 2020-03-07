@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Status;  
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Mail;
@@ -144,7 +145,8 @@ class UsersController extends Controller
         $title = $user->name . '的粉丝';
         return view('users.show_follow', compact('users', 'title'));
     }
-
+    
+    
     
     
 }
