@@ -13,6 +13,11 @@
                     @include('shared._stats', ['user'=>$user])
                 </section>
                 
+
+                @if (Auth::check())
+                    @include('users._follow_form')
+                @endif
+
             </div>
             <hr>
             <section class="status">
